@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습 4</title>
+    <style>
+        .stripes > div:first-child{
+            background-color: navy;
+            color: white;
+        }
+        .stripes > div:last-child{
+            background-color: navy;
+            color: white;
+        }
+
+        .stripes > .yellow:nth-child(n){
+            background-color: yellow;        
+        }
+
+        .stripes > *:not(.yellow){
+            background-color: navy;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="stripes">
+        <div>navy</div>
+        <div class="yellow">yellow</div>
+        <div>navy</div>
+        <div>navy</div>
+        <div>navy</div>
+        <div class="yellow">yellow</div>
+        <div>navy</div>
+        <div>navy</div>
+        <div>navy</div>
+        <div class="yellow">yellow</div>
+        <div>navy</div>
+     </div>
+</body>
+</html>

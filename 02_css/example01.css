@@ -1,0 +1,5 @@
+@import url('./import.css');
+p{
+    background-color: red;
+    color: white;
+}

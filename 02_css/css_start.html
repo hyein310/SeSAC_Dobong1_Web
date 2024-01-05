@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 적용 방법 3가지</title>
+    <!--style 태그는 반드시 head 안에 존재 해야함-->
+    <!-- 코드 밑에 있을 수록 우선순위가 높게 적용-->
+    <style>
+        p{
+            background-color: pink;
+            color: blue;
+        }
+
+        div{
+            background-color: yellow;
+        }
+    </style>
+
+    <link rel="stylesheet" href="./css_start.css">
+</head>
+<body>
+    <h1> CSS 적용 방법 </h1>
+    <div style="background-color: aqua;"> 인라인 방식 </div>
+    <div style="background-color: aqua;"> 인라인 방식 </div>
+    <div style="background-color: salmon;"> 인라인 방식 vs 스타일 태그 </div>
+
+    <p> 내장 스타일 태그 방식 </p>
+    <p> 내장 스타일 태그 방식 </p>
+    <ul>
+        <li>외부 스타일 시트</li>
+        <li>방식</li>
+    </ul>
+</body>
+</html>
