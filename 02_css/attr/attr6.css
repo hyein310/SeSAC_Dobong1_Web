@@ -1,0 +1,98 @@
+.img-box{
+    background-color: #9494ed;
+    width: 400px;
+    height: 250px;
+}
+
+.img-box img{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border: 1px solid gold;
+    
+    /* 부드럽게 transition 속성은 이미지에 넣는 것이 좋음*/
+    transition-duration: 10s;
+}
+
+.img-box img:hover{
+    /* 1. skew()
+        - 원하는 각도만큼 요소를 기울임
+        - x,y축 나눠서 속성 부여 가능
+            skewX()
+            skewY() 
+    */
+
+    transform: skewX(30eg);
+    transform: skewY(30eg);
+    transform: skew(30eg);
+
+    /* 2. scale()
+        - 크기 조절 함수(확대, 축소)
+            1보다 크면 확대, 1보다 작은 소수는 축소 
+    */
+
+    transform: scale(2);
+    transform: scaleX(1.5);
+    transform: scaleY(0.5);
+    transform: scale(2, 0.5);
+
+    /* 3. translate
+        - 이동
+        - translateX(): X축으로 이동
+        - translateY(): Y축으로 이동 
+        - translate : x,y축 기준으로 이동
+    */
+
+    transform: translate(50px, 50px);
+
+    /* 4. rotate
+        - 회전 (단위는 deg) 
+        - rotateX(), rotateY(): 각각 X축과 Y축 기준으로 회전
+        - rotate(): 시계방향으로 회전
+    */
+
+    /* perspective 숫자가 작으면 역동적으로 보이고 가까이 보임, 숫자가 크면 움직임 적어보임. 나와의 거리  */
+    transform: rotate(90deg);
+    transform: perspective(100px) rotateX(45deg);
+    transform: perspective(400px) rotateY(180deg);
+    backface-visibility: visible;
+}
+
+.box{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    background-color: black;
+}
+
+.box1:hover{
+    background-color: pink;
+    width: 120px;
+    height: 120px;
+
+    transition-duration: 1s;
+    /* transition-delay: 1s; */
+    /* transition-property: height; */
+    transition-timing-function: linear;
+}
+
+.box2:hover{
+    /* transition 단축 속성 */
+    /* transition: property duration(필수) function delay */
+    background-color: aqua;
+    transform: translateX(100px) scaleX(2);
+
+    transition: transform 0.5s linear 2s;
+    /* transition: 2s 0.5 */
+    /* 0.5 delay 후에, 2s 움직임 */
+}
+
+.box3:hover{
+    transition: 0.6s;
+    /* 투명도 설정 */
+    /* opacity: 0; transition 적용으로 자연스럽게 바뀜*/
+    /* visibility: hidden; 보였다가 잠시 후 바뀜*/
+    /* display: none; 갑자기 즉시적으로 변화하면서 transiton 적용 안됨 */
+
+
+}

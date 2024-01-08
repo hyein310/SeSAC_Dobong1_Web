@@ -1,0 +1,30 @@
+.container{
+    background-color: bisque;
+    width: 500px;
+    height: 500px;
+    display: flex;
+
+    justify-content: end;
+    flex-direction: row;
+    justify-content: wrap;
+
+    flex-wrap: wrap;
+    /* flex-wrap: nowrap; */
+}
+
+.item{
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+}
+
+.items1{
+    background-color: red;
+}
+.items2{
+    background-color: orange;
+}
+.items3{
+    background-color: yellow;
+}

@@ -1,0 +1,46 @@
+.box{
+    display: block;
+
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+    border: 1px solid black;
+}
+
+.box1:hover{
+    width: 180px;
+    height: 100px;
+
+    transition-duration: 1s;
+}
+
+.box2:hover{    
+    transform: skewX(-30deg);
+
+    transition-duration: 1s;
+    transition-timing-function: linear;
+}
+
+.box3:hover{    
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: red;
+
+    transition-duration: 1s;
+}
+
+.box4:hover{    
+    background-color: greenyellow;
+    transform: rotateY(360deg);
+    
+    background-color: yellow;
+
+    width: 200px;
+    height: 200px;
+
+    transition-duration: 3s;
+}
+
+
+

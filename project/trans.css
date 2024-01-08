@@ -1,0 +1,57 @@
+/* CSS */
+
+.background{
+    background-color: gainsboro;
+    width: 1400px;
+    height: 800px; 
+
+    display: flex;
+    /* flex-direction: row; */
+    align-items: center;
+    justify-content: center;
+
+}
+
+.beach{
+    transition-duration: 2s;
+    transition: 1s;
+}
+
+.beach img{
+
+    width: 360px;
+    height: 200px;
+ 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+ 
+    transform: translateX(-50%) translateY(-50%);
+    cursor: pointer;
+
+    transition-duration: 2s;
+    transition: 1s;
+}
+
+.beach:hover{
+    transform: skewY(0deg);
+    z-index: 4;
+}
+
+.beach1{
+    transform: skewY(30deg);
+    z-index: 3;
+}
+
+.beach2{
+    margin-left: 200px;
+    transform: skewY(30deg);
+    z-index: 2;
+}
+
+.beach3{
+    margin-left: 250px;
+    transform: skewY(30deg);
+    z-index: 1;
+}
+

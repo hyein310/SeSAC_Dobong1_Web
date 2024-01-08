@@ -1,0 +1,168 @@
+.d-block{
+    display: block;
+    background-color: aquamarine;
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    padding: 15px;
+    margin: 20px;
+}
+
+.d-inline{
+    display: inline;
+    background-color: pink;
+    width: 1000px;
+    height: 200px;
+    padding: 15px;
+    margin: 15px;
+    /* inline 태그에는 높이 너비가 적용 안됨 */
+    /* inline에서는 패딩, 마긴도 안주는게 좋음 */
+}
+
+.d-inline-block{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: yellowgreen;
+    border: 1px solid blue;
+    padding: 15px;
+    margin: 15px;
+    /* 그냥 inline 과는 창이 줄어도 다르게 합쳐지지 않음 */
+}
+
+.parent{
+    width: 400px;
+    /* width를 300px로 바꾸면 min 클래스는 400px 유지, max는 같이 줄어듦
+       width를 500px로 바꾸면 max 클래스는 400px 유지, min은 같이 늘어남 */
+    height: 200;
+    background-color: red;
+}
+
+.parent > .min{
+    width: 400px;
+    height: 100;
+    background-color: orange; 
+}
+
+.parent > .max{
+    width: 400px;
+    height: 100;
+    background-color: rebeccapurple; 
+}
+
+.box{
+    background-color: beige;
+    border: 1px solid black;
+}
+
+.box-px{
+    width: 50px;
+    height: 50px;
+}
+
+.box-view{
+    width: 50vw;
+    height: 50vh;
+}
+
+.box-per{
+    width: 50per;
+    height: 50per;
+}
+
+.rem{
+    font-size: 2rem;
+}
+
+.em{
+    font-size: 2em;
+}
+
+.square{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    background-color: blue;
+}
+
+.border{
+    background-color: yellow;
+    /* 단축속성: 굵기 모양 색깔 */
+    /* border: 3px solid red; */
+
+    border-color: red orange blue;
+    border-style: dotted;
+    border-width: 3px;
+    border-right: 5px;
+}
+
+.rounded{
+    background-color: yellowgreen;
+    /* 모서리가 깎이는 정도 50px일 때, 원이 완성됨 */
+    border-radius: 5px 10px 20px 40px;
+}
+
+.border-width{
+    border-width: 3px 6px 9px 12px;
+}
+
+.border-style{
+    border-style: dotted;
+}
+
+.border-color{
+    border-color: red orange yellow green;
+}
+
+.border-direct{
+    border-right-width: 10px;
+}
+
+.box-sizing{
+    background-color: orange;
+    border: 15px solid red;
+    padding: 20px;
+}
+
+.context-box{
+    box-sizing: content-box;
+}
+
+.border-box{
+    box-sizing: border-box;
+}
+
+.d-none {
+    display: none;
+    background-color: red;
+}
+.invisible {
+    visibility: hidden;
+    background-color: orangered;
+}
+.opacity-0 {
+    /* 1 불투명 */
+    opacity: 0.5; 
+    background-color: tomato;
+}
+
+.overflow-hidden{
+    /* 내용이 넘쳤을 때 잘라냄 */
+    overflow: hidden;
+}
+
+.overflow-scroll{
+    /* 내용이 넘쳤을 때 스크롤로 이동 */
+    overflow: scroll;
+}
+
+.overflow-auto{
+    /* 내용이 넘쳤을 때만 스크롤 보여줌 */
+    overflow: scroll;
+}
+
+.overflow-visible{
+    /* 내용이 넘쳤을 때 창 밖 이상으로 표현해냄 */
+    overflow: visible;
+}

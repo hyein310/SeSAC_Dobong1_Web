@@ -1,0 +1,28 @@
+.background{
+    background-color: skyblue;
+    width: 800px;
+    height: 500px;
+}
+
+.lion1{
+    background-image: url('./img/lion.png');
+    background-position: center;
+    background-repeat: repeat-x;
+}
+
+.lion2{
+    background-image: url('./img/lion.png');
+    background-position: contain;
+    background-position: left;
+    background-position: 100px 30px;
+    background-repeat: no-repeat;
+
+}
+
+.lion3{
+    background-image: url('./img/lion.png');
+    background-position: cover;
+    background-position: 400px;
+    background-repeat: no-repeat;
+}
+

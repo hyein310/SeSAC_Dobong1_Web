@@ -1,0 +1,51 @@
+.body{
+    height: 4000px;
+}
+
+.box{
+    display: inline-block;
+    width: 400px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+.background{
+    background-color: palegreen;
+    background: red;
+    /* 단축 속성
+    background: color image repeat position/size; 
+     */
+    background: linear-gradient(45eg, black, white);
+    background: linear-gradient(to top, black, white);
+}
+
+.background-image{
+    background-image: url('./img/small_img.png');
+
+    /* 1. background repeat */
+    background-repeat: repeat;
+    background-repeat: repeat-y;
+    background-repeat: repeat-x;
+    background-repeat: no-repeat;
+
+    /* 2. background-position */
+    /* center, bottom, left, right, top의 키워드로 지정 가능 */
+    /* background-position: center;
+    background-position: center top; */
+    /* background-position: 100px 200px; */
+    /* background-position: 100px; 은 가로, 세로 모두*/
+
+    /* 3. background-size */
+    /* 하나만 있을 경우 가로축에 대해서 픽셀 결정 */
+    background-size: 50px;
+    background-size: 90px 50px;
+
+    /* 원본 비율 유지 */
+    /* 이미지가 잘리지 않는 한 가장 크게 설정 */
+    /* background-size: contain; */
+    /* 이미지가 가장 작은 사이즈이지만, 다 덮게(이미지가 잘리는 경우가 많음) */
+    background-size: cover;
+
+    /* 4. background_attachment*/
+    background-attachment: fixed;
+}
