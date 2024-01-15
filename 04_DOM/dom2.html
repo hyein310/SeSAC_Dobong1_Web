@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM class</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+
+        #green{
+            background-color: green;
+        }
+
+        #red{
+            background-color: red;
+        }
+        .d-none{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box" id = "green">1</div>
+        <div class="box" id = "red">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+    </div>
+    <button onclick="addClass()">addClass</button>
+    <button onclick="removeClass()">removeClass</button>
+    <button onclick="containClass()">containClass</button>
+    <button onclick="toggleClass()">toggleClass</button>
+
+    <hr>
+    <input type="text" id = 'userName'>
+
+    <script>
+        // 클래스 관련 메소드 추가
+
+        let greenbox = document.getElementById('green');
+
+        // 클래스 추가하는 함수
+        function addClass(){
+            greenbox.classList.add('box1');
+            console.log(greenbox.classList);
+        }
+
+        // 클래스 삭제
+        function removeClass(){
+            greenbox.classList.remove('box1');
+            console.log(greenbox.classList);
+        }
+
+        // 클래스 유무 확인, T/F 반환
+        function containClass(){
+            console.log(greenbox.classList.contains('box1'));
+        } 
+
+        // 클래스 있으면 제거, 없으면 추가
+        function toggleClass(){
+            greenbox.classList.toggle('d-none');
+        } 
+
+
+        // 속성 변경 메서드
+        let inputE1 = document.getElementById('userName');
+        inputE1.setAttribute('placeholder', 'name');
+        inputE1.placerholder = 'name2';
+        
+        inputE1.style = 'color: red';  
+        inputE1.style.color = 'red';
+    </script>
+</body>
+</html>

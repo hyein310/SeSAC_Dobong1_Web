@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM 요소 추가, 삭제</title>
+    <!-- js 파일 분리해서 사용하는 경우 defer 추가해서 dom 요소 로드 후에 실행 -->
+    <script defer>
+        let ul = document.querySelector('li');
+        console.log(ul); 
+        //null, 아직 읽히지 않았기 때문에 null이 나옴
+        // script defer라는 것을 추가 해주거나 내용을 body에 넣으면 된다
+
+        function createNode() {
+            // let ul = document.querySelector('ul');
+            // console.log(ul); 
+            let li = document.querySelector('li');
+            li.innerText('새로 추가한 리스트');
+            console.log('li : ', li);
+        }
+
+        function appendNode(){
+            let li = document.querySelector('li');
+            li.innerText('새로 추가한 리스트');
+            console.log('li : ', li);
+
+            // append() :선택한 요소의 맨 뒤 자식으로 요소 추가
+
+            let ul = document.querySelector('ul');
+            ul.appendNode(li);
+            ul.appendNode('text');
+        }
+
+        function appendChildNode() {
+            let li = document.querySelector('li');
+            li.innerText('새로 추가한 리스트 append child');
+            
+            // append child() : 선택한 요소의 맨 뒤에 자식 요소로 추가
+            let ul = document.querySelector('ul');
+            ul.appendChild(li);
+            ul.appendChild('text'); //appendchild는 요소 노드만 추가 가능
+        }
+
+
+        function prependNode() {
+            let li = document.querySelector('li');
+            li.innerText('새로 추가한 리스트 prepend child');
+
+            // prepend() : 선택한 요소의 맨 앞 자식 요소로 추가
+            let ul = document.querySelector('ul');
+            ul.prepend('li');
+        }
+
+        function before() {
+            // 기존 노드 앞에 형제 요소로 추가
+            let standard = document.getElementById('li');
+
+            let li = document.createElement('li');
+            li.innerText = 'before';
+            standard.before(li);
+        }
+
+        function after() {
+            // 기존 노드 뒤에 형제 요소로 추가
+            let standard = document.getElementById('li');
+
+            let li = document.createElement('li');
+            li.innerText = 'after';
+            standard.after(li);
+        }
+
+        function removeNode() {
+            //내가 선택한 요소 삭제
+            let standard = document.getElementById('li');
+
+            let li = document.remove();
+        }
+
+        function removeChildNode() {
+            let ul = document.querySelector('ul');
+            let standard = document.getElementById('li');
+
+            console.log(ul.removeChild.standard);
+        }
+        
+    </script>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li id = 'li'>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+    <button onclick="createNode()">createNode</button>
+    <button onclick="appendNode()">appendNode</button>
+    <button onclick="appendChildNode()">appendChildNode</button>
+    <button onclick="prependNode()">prependNode</button>
+    <button onclick="before()">before</button>
+    <button onclick="after()">after</button>
+    <button onclick="removeNode">removeNode</button>
+    <button onclick="removeChildNode">removeChildNode</button>
+</body>
+</html>

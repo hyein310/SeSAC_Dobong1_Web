@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>댓글 등록하기</title>
+  </head>
+  <body>
+    <h1>댓글 등록하기</h1>
+    <form>
+      <label for="userid">아이디</label>
+      <input type="text" id="userid" name="userid" />
+      <label for="comment">댓글</label>
+      <input type="text" id="comment" name="comment" />
+      <!-- submit은 제출하는 형식이기 때문에 새로고침이 된다. -->
+      <button type="submit">등록</button>
+    </form>
+    <ul class="comment-list"> </ul>
+
+
+    <script>
+      // TODO: 아래 조건을 만족하도록 js 파일을 수정하기
+      // 문제
+      // - [ ] 아이디 input과 댓글 input을 입력하고 [등록] 버튼을 누르면, 댓글이 추가됩니다.
+      //     - 폼을 "제출"헸을 때에 해당하는 이벤트는 무엇인가요?
+      // - [ ] 아이디 값과 댓글 값을 가져와야 합니다.
+      // - [ ] <li> 태그를 새로 만들고, "아이디 - 댓글내용" 형식이 되도록 설정합니다.
+      // - [ ] <ul class="comment-list"> 태그에 li를 추가합니다.
+      // - [ ] 아이디 input과 댓글 input을 초기화해야 합니다.
+
+
+    // 버튼 태그 요소 선택해서 click 이벤트 해도 되고
+    // form 요소 선택해서 submit 이벤트 처리 해도 된다.
+
+    const form = document.querySelector('form');
+    const list = document.querySelector('.comment-list');
+
+    //form 요소의 button을 클릭하여 폼을 제출했을 때,
+    form.addEventListener('submit',function(e) {
+        // 폼이 제출되고 새로고침을 막아주는 함수
+        e.preventDefault();
+
+        // userid 라는 폼 요소에 접근
+        // const id = document.getElementsByName('userid');
+        // const id = document.querySelector('#userid');
+        const id = document.querySelector('input[name="userid"]');
+        // comment 라는 폼 요소에 접근
+        const comment = document.getElementsByName('comment');
+
+        // li 태그 생성
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${id.vaule}</strong> - ${comment.vaule}`;
+
+        // comment-list 요소에 위에서 만든 li 태그 추가
+        list.append(li);
+
+        // input 초기화
+        id.vaule = '';
+        comment.vaule ='';
+
+        // const idValue = document.querySelector('input[name="userid"]').vaule ;
+        // idValue = '';  //input 요소의 값에 변화가 X. 문자열이기 때문
+    })
+
+    </script>
+  </body>
+</html>

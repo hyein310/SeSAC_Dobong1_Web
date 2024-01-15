@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>민트 초코는 <span>맛있다 >_< </span></div>
+
+    <script>
+        let mint = document.querySelector('span');
+        mint.innerHTML = '<strong>맛없다 ㅡㅡ;;</strong>';
+        mint.style.color = 'red';
+
+        console.log(mint.innerHTML);
+
+
+        const div = document.querySelector('div')[0];
+        const span = document.querySelector('span')[0];
+
+        console(div, span);
+        span.textContent = '맛없다 ㅡㅡ;;';
+        span.style.color ='red';
+        span.style = 'font-weightL 700'
+    </script>
+</body>
+</html>
+
