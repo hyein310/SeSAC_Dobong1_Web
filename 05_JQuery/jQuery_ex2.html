@@ -1,0 +1,109 @@
+<html>
+  <head>
+    <!-- TODO1: jQuery CDN 불러오기 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+    <style>
+      div {
+        width: 100;
+        height: 100;
+      }
+
+      div:hover {
+        cursor: pointer;
+      }
+
+      .red {
+        background-color: red;
+      }
+
+      .orange {
+        background-color: orange;
+      }
+
+      .yellow {
+        background-color: yellow;
+      }
+
+      .green {
+        background-color: green;
+      }
+
+      .blue {
+        background-color: blue;
+      }
+
+      .purple {
+        background-color: purple;
+      }
+    </style>
+    <script>
+      let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+
+      // TODO2: changeColor 함수 내부 작성
+      function changeColor() {
+
+        // class보다 div로...
+
+        // if($('.red').hasClass('red') === true) {
+        //     $('.red').switchClass('red', 'orange',2);
+        // }
+        // if($('.orange').hasClass('orange')  === true) {
+        //     $('.orange').switchClass('orange', 'yellow',2);
+        // }
+        // if($('.yellow').hasClass('yellow')  === true) {
+        //     $('.yellow').switchClass('yellow', 'green',2);
+        // }
+        // if($('.green').hasClass('green')  === true) {
+        //     $('.green').switchClass('green', 'blue',2);
+        // }
+        // if($('.blue').hasClass('blue')  === true) {
+        //     $('.blue').switchClass('blue', 'purple',2);
+        // }
+        // if($('.purple').hasClass('purple')  === true) {
+        //     $('.purple').switchClass('purple', 'red',2);
+        // }
+
+
+        // 1번 방안 (colors X)
+        // red -> orange -> yellow -> ....
+
+        // 1. div요소 선택 (클래스 알아야 하니까) -> hasClass()
+        // 2. red 라는 클래스가 있다면 if문 안에 실행
+        // if($('div').hasClass('red')) {
+        //   // red가 있다면 true로 명령이 실행
+        //   $('div').switchClass('red', 'orange',2);
+        // }
+        // else if($('div').hasClass('orange')) {
+        //   // orange가 있다면 true로 명령이 실행
+        //   $('div').switchClass('orange', 'yellow',2);
+        // }
+        // // 등등....
+
+
+
+        // 2번 방안 (colors O)
+
+        // 현재 class : red -> red index : 0 -> colors[0], orange : colors[1]
+        // 현재 class : orange -> orange index : 1 -> colors[1], yellow : colors[2]
+        //....
+        // $('div').switchClass(colors[i], colors[i+1])
+        // -> i를 알아야 함
+
+        let nowClass = $('div').attr('class');
+        console.log(nowClass); // red ~ purple
+        let i = colors.indexOf(nowClass); // 0 ~ 5
+        
+        // purple 일 때
+        if(i == colors.length-1)
+          $('div').switchClass(colors[i], colors[0])
+        else
+          $('div').switchClass(colors[i], colors[i+1])
+      }
+    </script>
+  </head>
+  <body>
+    <div class="red" onclick="changeColor();"></div>
+  </body>
+</html>
