@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+    <link rel="stylesheet" href="/a/result.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2 id="username"><%= userInfo.name %></h2>
+        <h2>님 마이페이지</h2>
+        <br>
+        <br>
+        <br>
+        <div id="profileImg">
+            <img src="<%= fileInfo.path %>" alt="<%= userInfo.name %>님의 이미지" width="200" >
+        </div>
+        <br>
+        <br>
+        <br>
+        <table align="center">
+            <tr>
+                <td>아이디</td>
+                <td>
+                    <%= userInfo.id %>
+                </td>
+            </tr>
+            <tr>
+                <td>비밀번호</td>
+                <td>
+                    <%= userInfo.pw %>
+                </td>
+            </tr>
+            <tr>
+                <td>이름</td>
+                <td>
+                    <%= userInfo.name %>
+                </td>
+            </tr>
+            <tr>
+                <td>나이</td>
+                <td>
+                    <%= userInfo.age %>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</body>
+
+</html>

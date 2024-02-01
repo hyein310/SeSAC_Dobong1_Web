@@ -1,0 +1,27 @@
+.container {
+    margin: 100px;
+    text-align: center;
+}
+
+h2 {
+    font-weight: bold;
+}
+
+#username {
+    color: blue;
+    
+}
+
+#profileImg {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    box-shadow: 0 0 20px skyblue;
+}
+
+table {
+    width: 500px;
+    text-align: center;
+
+}

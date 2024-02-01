@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>실습 axios get 회원가입</title>
+    <!-- jQuery CDN > ajax 사용 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <!-- axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <form name="register">
+        <label for="name">
+            이름
+            <input type="text" id="name" name="name" />
+        </label>
+
+        <fieldset>
+            <legend>성별</legend>
+            <label for="male">
+                <input type="radio" name="gender" id="male" value="남자" /> 남자
+            </label>
+            <label for="female">
+                <input type="radio" name="gender" id="female" value="여자" /> 여자
+            </label>
+        </fieldset>
+        <fieldset>
+            <legend>생년월일</legend>
+            <select name="year" id="year">
+                <%for(let i=1985; i<=2003; i++){%>
+                    <option value="<%=i%>">
+                        <%=i%>
+                    </option>
+                    <%}%>
+            </select>
+            <span>년</span>
+            <select name="month" id="month">
+                <%for(let i=1; i<=12; i++){%>
+                    <option value="<%=i%>">
+                        <%=i%>
+                    </option>
+                    <%}%>
+            </select>
+            <span>월</span>
+            <select name="date" id="date">
+                <%for(let i=1; i<=31; i++){%>
+                    <option value="<%=i%>">
+                        <%=i%>
+                    </option>
+                    <%}%>
+            </select>
+            <span>일</span>
+        </fieldset>
+        <fieldset>
+            <legend>관심사</legend>
+            <label>
+                <input type="checkbox" name="favorite" value="여행" /> 여행
+            </label>
+            <label>
+                <input type="checkbox" name="favorite" value="패션" /> 패션
+            </label>
+            <label>
+                <input type="checkbox" name="favorite" value="음식" /> 음식
+            </label>
+        </fieldset>
+        <button type="button" onclick="axiosGet()">제출</button>
+
+        <!-- 동적폼 전송 결과를 보여줄 곳 -->
+        <div class="result"></div>
+    </form>
+
+    <script>
+        const resultBox = document.querySelector('.result');
+
+        function axiosGet() {
+            const form = document.forms['register'] //forms 객체 : document.forms['form의 이름'] name 속성만 가능
+            // const form = document.querySelector("[name='register']");
+
+            const name = form.name;
+            const gender =form.gender;
+            const year = form.year;
+            const month = form.month;
+            const date = form.date;
+
+            //체크박스 배열
+            const checkarr = [];
+            const favorite = form.favorite;
+            for (let i = 0; i < favorite.length; i++) {
+                if (favorite[i].checked == true) {
+                    checkarr.push(favorite[i].value)
+                }
+            };
+
+            // form.favorite.forEach((checkarr)=>{
+            //     if(checkarr.checked) {
+            //         favorite.push(checkarr.value);
+            //     }
+            // })
+
+            // console.log(checkarr);
+
+            const data = {
+                name: name.value,
+                gender: gender.value,
+                year: year.value,
+                month: month.value,
+                date: date.value,
+                favorite: checkarr,
+            };
+
+            if (name.value=='') {
+                resultBox.textContent = "이름을 입력해주세요.";
+                return;
+            }
+
+            else if (gender.value=='') {
+                resultBox.textContent = "성별을 선택해주세요.";
+                return;
+            }
+
+            else if (gender.value=='') {
+                resultBox.textContent = "관심사를 선택해주세요.";;
+                return;
+            }
+
+            else {
+                // 모든 값 채웠을 때 axios 요청
+                axios({
+                    method: "GET",
+                    url: "/axios-prac1",
+                    params: data,
+                }).then(function (res) {
+                    const { name, gender, year, month, date, favorite } = res.data;
+                    
+                    resultBox.innerText = `GET axios 요청 완료! ${res.data.name}님 환영합니다.
+생일은 ${year}/${month}/${date}
+취미는 ${checkarr}`;
+                    resultBox.style.color = "green";
+                    
+                    console.log(res);
+                    console.log(res.data);
+                })
+                .catch((err)=>{
+                    console.log(err);
+                })
+            }
+
+        }
+    </script>
+</body>
+
+</html>

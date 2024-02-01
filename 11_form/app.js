@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); //json 형식으로 데이터를 주고 받음
 
 app.get("/", function (req, res) {
-  res.render("in");
+  res.render("index");
 });
 
 app.get("/getForm", function (req, res) {

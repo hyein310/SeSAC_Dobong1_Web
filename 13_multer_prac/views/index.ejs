@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파일 업로드</title>
+
+    
+<!-- axios CDN -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <form action="/userjoin" method="post" enctype="multipart/form-data">
+        <label>
+            아이디
+            <input type="text" name="id" />
+        </label>
+        <br />
+        <label>
+            비밀번호
+            <input type="password" name="pw" />
+        </label>
+        <br />
+        <label>
+            이름
+            <input type="text" name="name" />
+        </label>
+        <br />
+        <label>
+            나이
+            <input type="number" name="age" />
+        </label>
+        <br />
+        <label>
+            프로필사진 <input type="file" name="userfile" />
+        </label>
+        <br />
+        <label>
+            <input type="reset" value="리셋">
+        </label>
+        <button type="submit">회원가입</button>
+
+    </form>
+
+    <script>
+        // function clickJoin() {
+        //     window.open('/result.ejs');
+
+        //     const form = document.forms("/uploads");
+        //     const file = document.getElementById("userfile"); 
+        //     // const img = document.querySelector(".profile"); 
+        //     const formData = new FormData();
+
+        //     const id = form.id;
+        //     const pw = form.pw;
+        //     const name = form.name;
+        //     const age = form.age;
+
+
+        //     axios({
+        //         method: "POST",
+        //         url: "/uploads",
+        //         data: {
+        //             id: id.value,
+        //             pw: pw.value,
+        //             name: name.value,
+        //             age: age.value,
+        //         },
+        //         headers: {
+        //             "Content-Type":"multipart/form-data",
+        //         },
+        //     })
+        //     .then((res)=> {
+        //         console.log(res.data); // 파일과 관련된 정보         
+                
+        //         img.src = "/" + res.data.path;
+        //     })
+        // }
+
+    </script>
+</body>
+</html>
