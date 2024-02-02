@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마이페이지</title>
-    <link rel="stylesheet" href="/a/result.css">
+    <link rel="stylesheet" href="/public/result.css"> 
+    <!-- 상대 경로로 하면 안됨! -->
 </head>
 
 <body>
@@ -16,7 +17,8 @@
         <br>
         <br>
         <div id="profileImg">
-            <img src="<%= fileInfo.path %>" alt="<%= userInfo.name %>님의 이미지" width="200" >
+            <img src="/<%= fileInfo.path %>" alt="<%= userInfo.name %>님의 이미지" width="200" >
+            <!-- 파일명 앞에 / 꼭 붙이기! -->
         </div>
         <br>
         <br>

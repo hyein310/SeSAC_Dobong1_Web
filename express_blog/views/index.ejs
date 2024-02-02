@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인페이지</title>
+    <!-- head include -->
+    <%- include('./include/head')%>
+</head>
+<body>
+    <!-- header include -->
+    <%- include('./include/header')%>
+
+    <!-- 
+        res.render("index.ejs", {
+        user: userID,
+        contentData: tempDB, // [{},{}]..의 DB 배열이 저장되어 있음
+    });
+     -->
+    <h2> 안녕하세요 <%= user %>의 블로그입니다!!</h2>
+    <ul>
+        <% for (let content of contentData) {%>
+        <li>
+            <a href="/content/<%= content.contentID %>"> <%= content.title %></a>
+            <!-- 위 링크를 누르면 get 요청이 가기 때문에 미리 app.js 에서 선언 -->
+            <button onclick="deleteContent('<%= content.contentID%>', this)">삭제</button>
+        </li>
+        <%}%>
+    </ul>
+    <script>
+        function deleteContent(contentID, btn) {
+            // console.log(contentID);
+            // console.log(btn); this로 전달된 button 태그
+            if(confirm("정말 삭제하실건가요? 😕")) {
+                // 삭제 로직 작성
+                axios({
+                    method: 'delete',
+                    url: '/blog/delete?contentID=' + contentID,
+                })
+                .then(function(response) {
+                    console.log(response);
+                    console.log(response.data);
+                })
+                .catch(function (err) {
+                    console.err(err); //에러 시 콘솔창이 빨간 화면으로 나타남
+                });
+
+                // btn의 부모노드인 li를 선택해서 삭제하겠다.
+                console.log(btn.parentNode);
+                btn.parentNode.remove();
+            }
+        }
+    </script>
+</body>
+</html>
