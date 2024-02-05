@@ -203,7 +203,7 @@ ALTER TABLE member DROP age;
 -- interest 컬럼 추가
 ALTER TABLE member ADD interest VARCHAR(100);
 
--- 실습문제2: DDL
+-- 실습문제3: DDL
 CREATE TABLE user(
     id VARCHAR(10) NOT NULL PRIMARY KEY,
     pw VARCHAR(20) NOT NULL,
@@ -214,6 +214,8 @@ CREATE TABLE user(
 );
 DESC user;
 
+
+-- 실습4:DML insert into
 SELECT * FROM user;
 INSERT INTO user (id, pw, name, gender, birthday, age) VALUES ('hong1234', '8o4bkg','홍길동', 'M','1990-01-31', 33);
 INSERT INTO user (id, pw, name, gender, birthday, age) VALUES ('sexysung', '87awjkdf','성춘향', 'F','1992-03-31', 31);
@@ -223,6 +225,8 @@ INSERT INTO user (id, pw, name, gender, birthday, age) VALUES ('widowmaker', '38
 INSERT INTO user (id, pw, name, gender, birthday, age) VALUES ('dvadva', 'k3f3ah','송하나', 'F','2001-06-03', 22);
 INSERT INTO user (id, pw, name, gender, birthday, age) VALUES ('jungkrat', '4ifha7f','정크랫', 'M','1999-11-11', 24);
 
+
+-- 실습6:DML select from
 SELECT * FROM user ORDER BY birthday ASC;
 SELECT * FROM user WHERE gender = "M" ORDER BY name DESC;
 SELECT id, name FROM user WHERE birthday LIKE "199%";
