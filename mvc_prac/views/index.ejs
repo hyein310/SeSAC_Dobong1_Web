@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>로그인 페이지</h1>
+    <form name="userlogin">
+    <label>
+        아이디
+        <input type="text" name="id" />
+    </label>
+    <br />
+    <label>
+        비밀번호
+        <input type="password" name="pw" />
+    </label>
+    <br />
+    <button type="button" onclick="LoginClick()">로그인</button>
+    <button type="button">로그인</button>
+    
+    <div class="result"></div>
+    </form>
+
+    <script>
+        const resultBox = document.querySelector(".result");
+        const form = document.forms["userlogin"];
+
+        
+        function LoginClick() {
+            // data 선언은 함수 안에 하기
+            const data = {
+                id: form.id.value,
+                pw: form.pw.value
+            };
+            console.log(data)
+                axios({
+                    method: "post",
+                    url: "/success",
+                    data: data,
+                })
+                .then(function (response) {
+                    console.log(response.data);
+
+                    if(response.data.isSuccess){
+                    resultBox.style.color = 'blue';
+                    resultBox.textContent = `로그인에 성공했습니다!`;
+                    }            
+                    else {                
+                resultBox.style.color = 'red';
+                resultBox.textContent = "error.. 로그인에 실패했습니다.";
+            }
+                });
+                
+            
+
+            // else if (data.id == '' || data.pw == '') {
+            //     resultBox.style.color = 'red';
+            //     resultBox.textContent = "아이디와 비밀번호는 공백이 불가합니다";
+            // }
+
+            // else {                
+            //     resultBox.style.color = 'red';
+            //     resultBox.textContent = "error.. 로그인에 실패했습니다.";}
+
+
+        }
+    
+    </script>
+</body>
+</html>

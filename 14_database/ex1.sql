@@ -1,0 +1,76 @@
+-- a 대학
+CREATE TABLE a_uni (
+    id VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(10) NOT  NULL,
+    age INT
+);
+
+INSERT INTO a_uni VALUES("20115544", "a", 34);
+INSERT INTO a_uni VALUES("20156677", "b", 31);
+INSERT INTO a_uni VALUES("20227755", "c", 25);
+INSERT INTO a_uni VALUES("20232223", "d", 23);
+INSERT INTO a_uni VALUES("20201144", "e", 23);
+INSERT INTO a_uni VALUES("20145145", "f", 30);
+INSERT INTO a_uni VALUES("20180919", "g", 26);
+
+SELECT * FROM a_uni;
+
+
+-- b 대학
+CREATE TABLE b_uni (
+    id VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(10) NOT  NULL,
+    age INT
+);
+
+INSERT INTO b_uni VALUES("2022091994", "h", 29);
+INSERT INTO b_uni VALUES("2020101021", "i", 23);
+INSERT INTO b_uni VALUES("2018187566", "j", 26);
+
+SELECT * FROM b_uni;
+
+
+-- 신청과목
+CREATE TABLE sub (
+    index_id INT PRIMARY KEY AUTO_INCREMENT,
+    id VARCHAR(20) NOT NULL,
+    subject VARCHAR(10) NOT NULL
+);
+
+
+INSERT INTO sub VALUES(NULL, "20115544", "네트워크");
+INSERT INTO sub VALUES(NULL, "20115544", "알고리즘");
+INSERT INTO sub VALUES(NULL, "20156677", "알고리즘");
+INSERT INTO sub VALUES(NULL, "20227755", "네트워크");
+INSERT INTO sub VALUES(NULL, "20232223", "C언어");
+INSERT INTO sub VALUES(NULL, "20145145", "캡스톤");
+INSERT INTO sub VALUES(NULL, "20180919", "캡스톤");
+INSERT INTO sub VALUES(NULL, "20180919", "C언어");
+INSERT INTO sub VALUES(NULL, "20180919", "네트워크");
+INSERT INTO sub VALUES(NULL, "2022091994", "C언어");
+INSERT INTO sub VALUES(NULL, "2022091994", "캡스톤");
+INSERT INTO sub VALUES(NULL, "2022091994", "웹프레임워크");
+INSERT INTO sub VALUES(NULL, "2018187566", "C언어");
+INSERT INTO sub VALUES(NULL, "2018187566", "네트워크");
+INSERT INTO sub VALUES(NULL, "2018187566", "캡스톤");
+
+SELECT * FROM sub;
+
+-- a대학 x 신청과목 inner JOIN
+SELECT *
+FROM a_uni INNER JOIN sub
+ON a_uni.id = sub.id;
+
+-- a대학 x 신청과목 left outer JOIN
+SELECT *
+FROM a_uni LEFT OUTER JOIN sub
+ON a_uni.id = sub.id;
+
+-- a대학 x 신청과목 right outer JOIN
+SELECT *
+FROM a_uni RIGHT OUTER JOIN sub
+ON a_uni.id = sub.id;
+
+-- a대학 x 신청과목 natural JOIN
+SELECT *
+FROM a_uni NATURAL JOIN sub;
