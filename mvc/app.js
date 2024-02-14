@@ -16,6 +16,7 @@ const userRouter = require("./routes/user");
 app.use("/user", userRouter);
 
 // page not found, 404 페이지는 맨 마지막에 설정
+// 설정해둔 페이지가 아닌 다른 페이지일 경우
 app.get("*", (req, res) => {
   res.render("404");
 });
