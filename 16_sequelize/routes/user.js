@@ -1,12 +1,8 @@
-// TODO: 라우트 설정
 const express = require("express");
 const router = express.Router();
 const controller = require("../controller/Cuser");
 
-// GET /user
-// /user을 /으로 생략
-router.get("/", controller.main);
-// GET /user/signin
+// get 요청
 router.get("/signin", controller.get_signin);
 // GET /user/signup
 router.get("/signup", controller.get_signup);
@@ -22,5 +18,4 @@ router.post('/profile/edit', controller.edit_profile);
 // // POST /user/profile/delete
 router.post('/profile/delete', controller.delete_profile);
 
-// 모듈 내보내기
 module.exports = router;
