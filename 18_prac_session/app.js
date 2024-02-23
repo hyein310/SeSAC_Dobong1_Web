@@ -42,7 +42,7 @@ app.get("/", (req, res) => {
     console.log("유저 정보>> ",user);
     if(user) {
         // 세션에 user 라는 키가 있다면 로그인된 상태
-        res.render("index", { isLogin:true, user:user });
+        res.render("index", { isLogin:true, user:user });  // user에 세션 정보가 담겨져 있음(hc)
     }
     else { res.render("index", { isLogin:false }); }
 });
@@ -58,7 +58,7 @@ app.post("/login", (req, res) => {
     console.log(req.body); //{id:'', pw:''}
     if (req.body.id === userInfo.userId && req.body.pw === userInfo.userPw) {
         // 로그인 진행
-        req.session.user = req.body.id;
+        req.session.user = req.body.id; // user라는 키에 세션 설정
         console.log(req.session);
         /* 
         Session {
