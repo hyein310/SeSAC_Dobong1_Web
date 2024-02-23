@@ -41,7 +41,7 @@
             if(result) {
                 // 로그인 성공
                 // 토큰을 저장하는 작업 >> 로컬 스토리지에
-
+                
                 /* 
                 -- localStorage
                 - 브라우저 내에 영구적으로 {키: 값} 쌍으로 데이터 저장
@@ -69,7 +69,10 @@
             else {
                 // 로그인 실패
                 alert(message);
-                document.location.reload();  // 새로고침해서 폼 비워주기
+
+                // 새로고침해서 폼 비워주기
+                form.reset();
+                // document.location.reload();
             }
         };
     </script>
