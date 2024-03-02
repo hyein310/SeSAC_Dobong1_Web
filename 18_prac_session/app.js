@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/static", express.static(__dirname + "/static"));
 
-const userInfo = { userId: "hc", userPw: "1234" };
+const userInfo = { userId: "cocoa", userPw: "1234" };
 
 // TODO: 세션 미들웨어 설정
 const sessionConfig = {
