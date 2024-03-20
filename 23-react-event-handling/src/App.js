@@ -17,7 +17,7 @@ function App() {
       <HandlerEx></HandlerEx>
       <ColorEx></ColorEx>
       <HiddenEx></HiddenEx>
-      <br></br>
+      <br></br><br></br>
       <hr></hr>
       <MultiEx></MultiEx>
     </div>

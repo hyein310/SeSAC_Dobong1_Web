@@ -1,21 +1,35 @@
 function Select(props) {
-  const sendFruitValue = () => {
-    props.fruit = document.querySelector("select[name=fruit] option:checked").value;
-    console.log("전달되는 값 >> ", props.fruit);
-    <img src={`${props.fruit}.jpg`} alt="" />
-  }
+  // const sendFruitValue = () => {
+  //   props.fruit = document.querySelector("select[name=fruit] option:checked").value;
+  //   console.log("전달되는 값 >> ", props.fruit);
+  //   <img src={`${props.fruit}.jpg`} alt="" />
+  // }
+
+  const { setData } =props;
+//  const [data, setData] = useState({
+//    fruit:"apple",
+//    background:"black",
+//    color:"white",
+//    content:"text",
+//    })
+
   
       return (
       <>
         과일 :
-        <select name="fruit" onChange={sendFruitValue}>
+        <select onChange={(e) => {setData((prevState) => {
+          console.log(e.target.value);
+          return {...prevState, fruit:e.target.value}
+        })}}>
           <option value="apple">사과</option>
           <option value="bananas">바나나</option>
           <option value="peaches">복숭아</option>
           <option value="grapes">포도</option>
         </select>
         배경색 :
-        <select onChange={(e) => {}}>
+        <select onChange={(e) => {setData((prevState) => {
+          return {...prevState, background:e.target.value}
+        })}}>
           <option value="black">검정</option>
           <option value="white">하양</option>
           <option value="red">빨강</option>
@@ -27,7 +41,9 @@ function Select(props) {
           <option value="pink">분홍</option>
         </select>
         글자색 :
-        <select onChange={(e) => {}}>
+        <select onChange={(e) => {setData((prevState)=>{
+          return {...prevState, color:e.target.value}
+        })}}>
           <option value="black">검정</option>
           <option value="white">하양</option>
           <option value="red">빨강</option>
