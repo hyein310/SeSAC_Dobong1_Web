@@ -23,18 +23,36 @@ export default function Alphabet() {
         setInputAlpha(""); // 빈값으로 비우기
     };
 
+    // 엔터키 입력 활성화
+    function activeEnter(e) {
+        console.log(e.key);
+        if (e.key === "Enter") {
+            addAlpha();
+        }
+    }
+
+    // 더블클릭 시 삭제
+    function deleteAlphabet(id) {
+        // console.log(id); 아이디 확인해보기
+        // 클릭되는 아이디가 alpha의 id 값과 일치하면 새 배열에 넣지 않기
+        const newAlpha = list.filter((alpha) => alpha.id !== id);
+        setList(newAlpha);
+    }
+
     console.log(inputAlpha);
     return (
         <div>
             <input type="text" 
                     onChange={(e)=>{setInputAlpha(e.target.value)}} 
-                    value={inputAlpha}/>
+                    value={inputAlpha}
+                    onKeyDown={(e)=>{activeEnter(e)}}/>
             <button onClick={addAlpha}>add alphabet</button>
             <ol>
             {list.map((alphabet) => {
                 // 중괄호가 나오면 return을 사용하고 그외는 return없이 사용 가능
                 return (
-                    <li key={alphabet.id}>{alphabet.alpha}</li>
+                    <li key={alphabet.id}
+                    onDoubleClick={()=> deleteAlphabet(alphabet.id)}>{alphabet.alpha}</li>
                 )
             })}
             </ol>
