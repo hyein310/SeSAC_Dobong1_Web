@@ -1,0 +1,29 @@
+.container {
+    border: 1px solid gray;
+    padding: 0.5rem;
+    margin: 1rem ;
+}
+
+.box2 {
+    background-color: gainsboro;
+}
+
+.box2 div {
+    background-color: pink;
+    width: 150px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+/* 클래스 여러개 지정 */
+.first {
+    color: orange;
+    font-size: 1.5rem;
+}
+
+.second {
+    background-color: black;
+}
