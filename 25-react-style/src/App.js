@@ -4,6 +4,7 @@ import BasicCSS from "./components/BasicCSS"
 import ModuleCSS from './components/ModuleCss';
 import StyledComp from './components/StyledComp';
 import AppClone from './components/PracticeSC';
+import Sass from './components/Sass';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <BasicCSS></BasicCSS>
       <ModuleCSS></ModuleCSS>
       <StyledComp></StyledComp> */}
-      <AppClone></AppClone>
+      {/* <AppClone></AppClone> */}
+      <Sass></Sass>
     </div>
   );
 }
