@@ -7,6 +7,8 @@ import UseCallback2 from './components/UseCallback2';
 import UseReducer from './components/UseReducer';
 import useTitle from './hooks/useTitle';
 import CustomHook from './components/CustomHook';
+import Form from './components/UseForm';
+import PracUseForm from './components/PracUseForm';
 
 function App() {
   useTitle("React hook!")
@@ -19,7 +21,9 @@ function App() {
       <br></br>
       <UseCallback2></UseCallback2> */}
       {/* <UseReducer></UseReducer> */}
-      <CustomHook></CustomHook>
+      {/* <CustomHook></CustomHook> */}
+      {/* <Form></Form> */}
+      <PracUseForm></PracUseForm>
     </>
   );
 }
