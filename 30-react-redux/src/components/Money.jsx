@@ -2,7 +2,7 @@ import { useDispatch, useSelector} from "react-redux"
 import { useState } from "react";
 
 export function Money() {
-    const money = useSelector((state)=>state.money);
+    const money = useSelector((state)=>state.money); //Number
     const [number, setNumber] = useState(0) 
 
     const dispatch = useDispatch();
