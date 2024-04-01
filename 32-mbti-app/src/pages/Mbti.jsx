@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import SkyblueButton from "../components/SkyblueButton";
 import { check, next } from "../store/modules/mbti";
+import Progress from "../components/Progress";
 
 export default function Mbti() {
   const survey = useSelector((state) => state.mbti.survey);  // [{question, answer:[{text, result}]}, {question, answer:[{text, result}]}]
@@ -35,6 +36,7 @@ export default function Mbti() {
           );
         })}
       </ul>
+      <Progress page={page} maxPage={survey.length}/>
     </>
   );
 }

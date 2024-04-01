@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import OrangeButton from "../components/OrangeButton";
-import SkyblueButton from "../components/SkyblueButton";
-import PinkButton from "../components/PinkButton";
 import { useDispatch } from "react-redux";
 import { next } from "../store/modules/mbti";
 
