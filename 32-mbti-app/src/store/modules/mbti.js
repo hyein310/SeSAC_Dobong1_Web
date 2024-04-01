@@ -127,6 +127,7 @@ const CHECK = 'mbti/CHECK';
 const NEXT = 'mbti/NEXT';
 const RESET = 'mbti/RESET';
 
+// action
 export function check(result) {
     return {
         type: CHECK,

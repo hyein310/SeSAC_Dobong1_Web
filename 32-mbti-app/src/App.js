@@ -22,6 +22,7 @@ function App() {
   return (
     <Main>
       <GlobalStyle />
+      {/* 페이지가 0이면 Start, 1~4까지는 Mbti, 마지막페이지는 Show */}
       { page === 0 ? <Start /> : 
         page!==survey.length+1 ? <Mbti /> :
         <Show /> }
