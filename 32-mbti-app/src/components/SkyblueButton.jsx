@@ -4,9 +4,9 @@ export default function SkyblueButton({ text, clickEvent }) {
     <Button
       text={text}
       clickEvent={clickEvent}
-      mainColor="#c1e3ff"
-      subColor="#7cb8fd"
-      hoverColor="#d7f6ff"
+      maincolor="#c1e3ff"
+      subcolor="#7cb8fd"
+      hovercolor="#d7f6ff"
     ></Button>
   );
 }

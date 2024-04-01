@@ -4,9 +4,9 @@ export default function PinkButton({ text, clickEvent }) {
     <Button
       text={text}
       clickEvent={clickEvent}
-      mainColor="#f9c4d2"
-      subColor="#b18597"
-      hoverColor="#ffe9e9"
+      maincolor="#f9c4d2"
+      subcolor="#b18597"
+      hovercolor="#ffe9e9"
     ></Button>
   );
 }

@@ -4,8 +4,8 @@ export default function OrangeButton({text, clickEvent}) {
         <Button
         text={text}
         clickEvent={clickEvent}
-        mainColor="#fae243"
-        subColor="#fa9f1a"
-        hoverColor="#faf000"></Button>
+        maincolor="#fae243"
+        subcolor="#fa9f1a"
+        hovercolor="#faf000"></Button>
     )
 }
