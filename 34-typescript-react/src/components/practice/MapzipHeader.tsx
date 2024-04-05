@@ -35,11 +35,26 @@ interface Props {
 export default function MatzipHeader(props: Props) {
   const { mapo, dobong, gangdong, setMapo, setDobong, setGangdong } =
     props;
+
+  const setState = (
+    func: React.Dispatch<SetStateAction<boolean>>
+  ) => {
+    setDobong(false);
+    setGangdong(false);
+    setMapo(false);
+    func(true);
+  };
   return (
     <Header>
-      <Div textColor={gangdong}>강동구</Div>
-      <Div textColor={dobong}>도봉구</Div>
-      <Div textColor={mapo}>마포구</Div>
+      <Div textColor={gangdong} onClick={() => setState(setGangdong)}>
+        강동구
+      </Div>
+      <Div textColor={dobong} onClick={() => setState(setDobong)}>
+        도봉구
+      </Div>
+      <Div textColor={mapo} onClick={() => setState(setMapo)}>
+        마포구
+      </Div>
     </Header>
   );
 }
