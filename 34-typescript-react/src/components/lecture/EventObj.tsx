@@ -18,7 +18,8 @@ export default function EventObj() {
         }
     }
     return (
-        <div>
+        <div style={{backgroundColor: "#f4ffaa"}}>
+            <h3>event 객체 타입</h3>
             <div onClick={(e)=> console.log(e.target)}>onClick</div>
             <div onClick={handleClick}>onClick!!</div>
             <div>
