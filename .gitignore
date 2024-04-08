@@ -1,2 +1,3 @@
-*/node_modules
-*/package-lock.jsonS
+node_modules
+package-lock.jsonS
+.env
