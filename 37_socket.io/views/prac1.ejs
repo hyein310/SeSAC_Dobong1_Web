@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice 1</title>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <h1>Hello, World!</h1>
+    <div id="msgDiv"></div>
+    <br />
+    <form id="chat">
+        <button id="hello" type="submit">hello</button>
+        <button id="study" type="submit">study</button>
+        <button id="bye" type="submit">bye</button>
+    </form>
+    <script>
+        const socket = io();
+
+        const hello = document.getElementById("hello");
+        const study = document.getElementById("study");
+        const bye = document.getElementById("bye");
+        const chatForm = document.getElementById("chat");
+
+        chatForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            // console.log("client: ",e.submitter.id);
+            const msg = e.submitter.id;
+
+            socket.emit("msg", msg);
+        });
+
+        
+        socket.on("msg_render", (msg) => {
+            console.log("client: ", msg);
+            msgDiv.innerText = msg;
+        })
+    </script>
+</body>
+</html>

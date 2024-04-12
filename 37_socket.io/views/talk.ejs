@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talk</title>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <style>
+        #container{}
+
+        #container .chat-content{
+            background-color: rgb(139, 205, 255);
+            padding: 10px;
+        }
+
+        #container .chat-content div{
+            display: flex;
+        }
+        #container .chat-content .send{
+            justify-content: flex-end;
+        }
+        #container .chat-content .receive{
+            justify-content: flex-start;
+        }
+        #container .chat-content .receive p{
+            background-color: white;
+
+        }
+        #container .chat-content .send p{
+            background-color: yellow;
+
+        }
+        #container .chat-content div p{
+            display: inline-block;
+            padding: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="chat-content" id="chat-content">
+            <div class="send"><p>메세지</p></div>
+            <div class="send"><p>내가 보낸 메세지</p></div>
+            <div class="receive"><p>남이 보낸 메세지</p></div>
+            <!-- <div id="send" style="background-color: yellow;"></div>
+            <div id="receive" style="background-color: white;"></div> -->
+        </div>
+
+        <form id="chat">
+            <input type="text" id="message">
+            <button>전송</button>
+        </form>
+    </div>
+    <script>
+        const socket = io();
+        
+        const send = document.getElementsByClassName("send");
+        const receive = document.getElementsByClassName("receive");  // class name 배열로 불러오기 때문에 X
+        const chatContent = document.getElementById("chat-content");
+
+        const chatForm = document.getElementById("chat");
+
+        chatForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const input = chatForm.querySelector("#message");
+            const message = input.value;
+            socket.emit("send_msg", message);
+
+            input.value="";
+        });
+
+        socket.on("receive_msg", (message, id) => {
+
+            // console.log("id>> ",id);
+            if(id === socket.id) {
+                const p = document.createElement("p");
+                const div = document.createElement("div");
+
+                div.className = "send";
+                p.textContent = message;
+                div.appendChild(p);
+                chatContent.appendChild(div);
+            }
+            else {
+                const p = document.createElement("p");
+                p.textContent = message;
+                receive.append(p);
+            }
+        })
+    </script>
+</body>
+</html>
