@@ -65,7 +65,7 @@ io.on("connection", (socket) => {
 
         // 3. 내가 포함한 방 client에게 입장 메세지 전달
         // 나빼고 내가 참여한 채팅방 모두에게
-        // socket.broadcast.to(chatRoom).emit("user_join", `[${socket.id}]님이 입장하셨습니다.`)
+        socket.broadcast.to(chatRoom).emit("user_join_without", `[${socket.id}]님이 입장하셨습니다.`)
         
         // 나를 포함한 내가 참여한 모든 채팅방에게
         io.to(chatRoom).emit("user_join", `[${socket.id}]님이 입장하셨습니다.`);
@@ -88,11 +88,18 @@ io.on("connection", (socket) => {
 
 
     // ------------ talk ---------------
-    socket.on("send_msg", (message) => {
+    // socket.on("user_name", (userName) => {
+    // console.log(userName);
+    // })
+
+    socket.on("send_msg", (message, userName) => {
         console.log(message);
-        io.emit("receive_msg", message, socket.id );
-        console.log(socket.id);
-    }); 
+        // io.emit("receive_msg", message, socket.id, userName );
+        console.log(userName);
+        io.to(socket.room).emit("receive_msg", `${userName} : ${message}`, socket.id);
+    });
+    
+
 });
 
 server.listen(PORT, () => {

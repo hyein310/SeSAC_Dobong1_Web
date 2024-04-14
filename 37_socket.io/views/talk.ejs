@@ -1,93 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Talk</title>
     <script src="/socket.io/socket.io.js"></script>
 
     <style>
-        #container{}
+      #container {
+      }
 
-        #container .chat-content{
-            background-color: rgb(139, 205, 255);
-            padding: 10px;
-        }
+      #container .chat-content {
+        background-color: rgb(139, 205, 255);
+        padding: 10px;
+      }
 
-        #container .chat-content div{
-            display: flex;
-        }
-        #container .chat-content .send{
-            justify-content: flex-end;
-        }
-        #container .chat-content .receive{
-            justify-content: flex-start;
-        }
-        #container .chat-content .receive p{
-            background-color: white;
-
-        }
-        #container .chat-content .send p{
-            background-color: yellow;
-
-        }
-        #container .chat-content div p{
-            display: inline-block;
-            padding: 4px;
-        }
+      #container .chat-content div {
+        display: flex;
+      }
+      #container .chat-content #users {
+        background-color: none;
+        justify-content: center;
+        color: dimgray;
+      }
+      #container .chat-content .send {
+        justify-content: flex-end;
+      }
+      #container .chat-content .receive {
+        justify-content: flex-start;
+      }
+      #container .chat-content .receive p {
+        background-color: white;
+      }
+      #container .chat-content .send p {
+        background-color: yellow;
+      }
+      #container .chat-content div p {
+        display: inline-block;
+        padding: 4px;
+      }
+      h2 {
+        text-align: center;
+        padding: 30px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="container">
-        <div class="chat-content" id="chat-content">
-            <div class="send"><p>메세지</p></div>
-            <div class="send"><p>내가 보낸 메세지</p></div>
-            <div class="receive"><p>남이 보낸 메세지</p></div>
-            <!-- <div id="send" style="background-color: yellow;"></div>
-            <div id="receive" style="background-color: white;"></div> -->
-        </div>
+      <div class="chat-content" id="chat-content">
+        <!-- 유저 채팅방 입장 -->
+        <div id="users"><br /></div>
 
-        <form id="chat">
-            <input type="text" id="message">
-            <button>전송</button>
-        </form>
+        <div class="send"><p>내가 보낸 메세지</p></div>
+        <div class="receive"><p>남이 보낸 메세지</p></div>
+      </div>
+
+      <form id="chat">
+        <input type="text" id="message" />
+        <button>전송</button>
+      </form>
     </div>
     <script>
-        const socket = io();
-        
-        const send = document.getElementsByClassName("send");
-        const receive = document.getElementsByClassName("receive");  // class name 배열로 불러오기 때문에 X
-        const chatContent = document.getElementById("chat-content");
+      const socket = io();
 
-        const chatForm = document.getElementById("chat");
+      const send = document.getElementsByClassName("send");
+      const receive = document.getElementsByClassName("receive"); // class name 배열로 불러오기 때문에 X
+      const chatContent = document.getElementById("chat-content");
 
-        chatForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const input = chatForm.querySelector("#message");
-            const message = input.value;
-            socket.emit("send_msg", message);
+      const chatForm = document.getElementById("chat");
 
-            input.value="";
-        });
+      // 채팅방 입장
+      const chattingRoom = prompt("채팅방을 입력해주세요.");
+      // 유저 이름 입력
+      const userName = prompt("유저 이름을 입력해주세요🐻");
 
-        socket.on("receive_msg", (message, id) => {
+      // 유저 join 안내 메세지 출력
+      const h2 = document.createElement("h2");
+      h2.innerText = `⭐ 채팅방 ${chattingRoom} ⭐`;
+      document.body.prepend(h2);
 
-            // console.log("id>> ",id);
-            if(id === socket.id) {
-                const p = document.createElement("p");
-                const div = document.createElement("div");
+      socket.emit("join", chattingRoom);
 
-                div.className = "send";
-                p.textContent = message;
-                div.appendChild(p);
-                chatContent.appendChild(div);
-            }
-            else {
-                const p = document.createElement("p");
-                p.textContent = message;
-                receive.append(p);
-            }
-        })
+      socket.on("user_join_without", (notice) => {
+        const p = document.createElement("p");
+        p.textContent = notice;
+        users.append(p);
+      });
+
+      // 유저 이름 보내기
+    //   socket.emit("user_name", userName);
+
+      chatForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const input = chatForm.querySelector("#message");
+        const message = input.value;
+        socket.emit("send_msg", message, userName);
+
+        input.value = "";
+      });
+
+      socket.on("receive_msg", (message, id) => {
+        // console.log("id>> ",id);
+        if (id === socket.id) {
+          const p = document.createElement("p");
+          const div = document.createElement("div");
+
+          div.className = "send";
+          p.textContent = message;
+          div.appendChild(p);
+          chatContent.appendChild(div);
+        } else {
+          const p = document.createElement("p");
+          const div = document.createElement("div");
+
+          div.className = "receive";
+          p.textContent = message;
+          div.appendChild(p);
+          chatContent.appendChild(div);
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
