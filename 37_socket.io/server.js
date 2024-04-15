@@ -26,6 +26,7 @@ app.get("/talk", (req, res) => {
     res.render("talk");
 })
 
+// socket.io에서 제공하는 메소드
 io.on("connection", (socket) => {
     console.log("socket id >> ",socket.id);  // socket에 id 존재
     // socket.on("event_name", (arg1, arg2, arg3, cb) => {
@@ -81,10 +82,16 @@ io.on("connection", (socket) => {
 
 
     // ----------- practice 1 ---------------
-    socket.on("msg", (msg) => {
-        console.log("server: ", msg);
-        io.emit("msg_render", msg);
-    });
+    // socket.on("msg", (msg) => {
+    //     console.log("server: ", msg);
+    //     io.emit("msg_render", msg);
+    // });
+
+    socket.on("hello", (message) => {
+        console.log("client:", message);
+        socket.emit("hello2", "안녕하세용.");
+      });
+
 
 
     // ------------ talk ---------------

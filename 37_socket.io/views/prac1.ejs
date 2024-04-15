@@ -9,33 +9,45 @@
 <body>
     <h1>Hello, World!</h1>
     <div id="msgDiv"></div>
+    
     <br />
-    <form id="chat">
-        <button id="hello" type="submit">hello</button>
+    <!-- <form id="chat"> -->
+        <!-- <button id="hello" type="submit" onclick=hello()>hello</button> -->
+        <button id="hello" onclick="hello()">hello</button>
         <button id="study" type="submit">study</button>
         <button id="bye" type="submit">bye</button>
-    </form>
+    <!-- </form> -->
+    <h3></h3>
+
     <script>
         const socket = io();
 
-        const hello = document.getElementById("hello");
+        // const hello = document.getElementById("hello");
         const study = document.getElementById("study");
         const bye = document.getElementById("bye");
         const chatForm = document.getElementById("chat");
+        const h3 = document.querySelector("h3");
 
-        chatForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            // console.log("client: ",e.submitter.id);
-            const msg = e.submitter.id;
-
-            socket.emit("msg", msg);
+        function hello() {
+        socket.emit("hello", "hello");
+        socket.on("hello2", (message) => {
+          h3.textContent = "server: " + message;
         });
+      }
+
+        // chatForm.addEventListener("submit", (e) => {
+        //     e.preventDefault();
+        //     // console.log("client: ", e.submitter.id);
+        //     const msg = e.submitter.id; // 제출되는 버튼 id를 읽어옴
+
+        //     socket.emit("msg", msg);
+        // });
 
         
-        socket.on("msg_render", (msg) => {
-            console.log("client: ", msg);
-            msgDiv.innerText = msg;
-        })
+        // socket.on("msg_render", (msg) => {
+        //     console.log("client: ", msg);
+        //     msgDiv.innerText = msg;
+        // })
     </script>
 </body>
 </html>
