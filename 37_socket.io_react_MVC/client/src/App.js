@@ -1,12 +1,20 @@
-import Practice from './components/Practice';
-import Start from './components/Start';
+import Chatting1 from './components/Chatting1';
+import Chatting2 from './components/Chatting2';
+import Chatting3 from './components/Chatting3';
+// import Practice from './components/Practice';
+// import Start from './components/Start';
+import "./styles/chat.css";
+import "bootstrap/dist/css/bootstrap.css"
 
 function App() {
   return (
     <div className="App">
-      <h1>socket 사용해보기</h1>
+      {/* <h1>socket 사용해보기</h1>
       <Start></Start>
-      <Practice></Practice>
+      <Practice></Practice> */}
+      {/* <Chatting1></Chatting1> */}
+      {/* <Chatting2></Chatting2> */}
+      <Chatting3></Chatting3>
     </div>
   );
 }

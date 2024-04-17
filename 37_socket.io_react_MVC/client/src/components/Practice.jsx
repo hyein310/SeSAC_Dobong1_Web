@@ -13,7 +13,6 @@ export default function Practice() {
     const hello = () => {
         socket.emit("hello", "hello");
         socket.on("hello2", (message) => {
-        // h3.textContent = "server: " + message;
         setFromServerStr(`server: ${message}`);
         });
     }
@@ -21,7 +20,6 @@ export default function Practice() {
     const study = () => {
         socket.emit("study", "study");
         socket.on("study2", (message) => {
-        // h3.textContent = "server: " + message;
         setFromServerStr(`server: ${message}`);
         });
     }
@@ -29,11 +27,11 @@ export default function Practice() {
     const bye = () => {
         socket.emit("bye", "bye");
         socket.on("bye2", (message) => {
-        // h3.textContent = "server: " + message;
         setFromServerStr(`server: ${message}`);
         });
     }
 
+    // mount 되었을 때만 동작, useEffect안에 있으면 새로고침하지 않아도 실행 가능
     useEffect(()=>{
         initSocketConnect();
         
