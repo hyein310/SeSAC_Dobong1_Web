@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import io from "socket.io-client";
 import Notice from "./Notice";
 import Speech from "./Speech";
@@ -12,18 +12,18 @@ export default function Chatting3() {
   };
   const [msgInput, setMsgInput] = useState("");
   const [chatList, setChatList] = useState([
-    {
-      type: "me",
-      content: "내가 작성한 메세지",
-    },
-    {
-      type: "other",
-      content: "다른 사람이 작성한 메세지",
-    },
-    {
-      type: "notice",
-      content: "~~~님이 입장하셨습니다.",
-    },
+    // {
+    //   type: "me",
+    //   content: "내가 작성한 메세지",
+    // },
+    // {
+    //   type: "other",
+    //   content: "다른 사람이 작성한 메세지",
+    // },
+    // {
+    //   type: "notice",
+    //   content: "~~~님이 입장하셨습니다.",
+    // },
   ]);
 
   const [nicknameInput, setNicknameInput] = useState(""); // 닉네임 input창
@@ -83,7 +83,7 @@ export default function Chatting3() {
             // 1. id끼리 비교
             if (key !== socket.id)
             // 2. nickname 끼리 비교 if (nickname !== userList[key])
-            options.push(<option value={key}>{userList[key]}</option>)
+            options.push(<option value={key} key={key}>{userList[key]}</option>)
         }
 
         return options;
@@ -101,15 +101,59 @@ export default function Chatting3() {
             msg: msgInput,
         };
         socket.emit("send", sendData);
-
-        
-        // dm 받기
-        socket.on("message", (dmContent) => {
-            setChatList(dmContent);
-            console.log(chatList);
-        });
+        setMsgInput("");
     };
 
+    // useCallback은 함수를 저장하기 위해 사용함.. useMemo는 값을 저장..
+    const addChatList = useCallback((dmContent) => {
+        // console.log(chatList);
+        // {id: 메세지를 보낸 사람의 닉네임, messsage: 보낸 메세지 내용, isDm: true or undefined}
+        // 내 닉네임 : nickname state에서 관리
+        // 보낸 사람의 닉네임: dmContent.id
+        
+        const type =  dmContent.id === nickname? "me" : "other"; // 같을 때, 본인 
+        const content = `${dmContent.isDm ? "[DM]" :""} ${dmContent.message}`;
+        const isDm = dmContent.isDm;
+        const newChatList = [...chatList, {
+            type: type,
+            content: content,
+            isDm: isDm,
+            name: dmContent.id,
+        }];
+        
+        setChatList(newChatList);
+    }, [nickname, chatList]);
+    // 첫번째 비교할 때는 nickname이 제대로 설정되지 않아서 다른사람이 보낸 것으로 설정되고 있음
+    // 입장시에 닉네임이 바뀌기 때문에 nickname값도 줘야함
+
+
+    useEffect(() => {
+        // dm 받기
+        socket.on("message", addChatList
+            // console.log(chatList);
+            // // {id: 메세지를 보낸 사람의 닉네임, messsage: 보낸 메세지 내용, isDm: true or undefined}
+            // // 내 닉네임 : nickname state에서 관리
+            // // 보낸 사람의 닉네임: dmContent.id
+            
+            // const type =  dmContent.id === nickname? "me" : "other"; // 같을 때, 본인 
+            // const content = `${dmContent.isDm ? "[DM]" :""} ${dmContent.message}`;
+            // const isDm = dmContent.isDm;
+            // const newChatList = [...chatList, {
+            //     type: type,
+            //     content: content,
+            //     isDm: isDm,
+            // }];
+            
+            // setChatList(newChatList);
+        )
+    }, [addChatList]); 
+    
+    // scroll
+    const scrollDiv = useRef(null);
+    useEffect(()=> {
+        scrollDiv.current ?.scrollIntoView({behavior: "smooth"});  // 특정 요소에 따른 스크롤 조정
+        // scrollDiv.current ?.scrollIntoView({behavior: "auto"});
+    }, [chatList])
   return (
     <>
       <ul>
@@ -143,6 +187,7 @@ export default function Chatting3() {
                 <Speech key={i} chat={chat} />
               )
             )}
+            <div ref={scrollDiv}></div>
           </section>
           <form
             className="msg-form"

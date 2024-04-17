@@ -54,7 +54,7 @@ function socketHandler(server) {
                 // 전체에게 메세지 보내기
                 io.emit("message", {
                     id: msgData.myNick, // 보낸 사람 닉네임, speech 컴포넌트에서 닉네임 표시하기 위함
-                    message: msgData.msgData,
+                    message: msgData.msg,
                 });
             }
             else {
@@ -62,12 +62,14 @@ function socketHandler(server) {
                 // (1) 특정 소켓 아이디에게만 전달 (나 포함 x) --> io.to(socketid).emit(~~)
                 io.to(msgData.dm).emit("message", {
                     id: msgData.myNick,
-                    message: msgData.msgData,
+                    message: msgData.msg,
+                    isDm: true,
                 })
                 // (2) 나에게만 메세지 보내기 --> socket.emit
                 socket.emit("message", {
                     id: msgData.myNick,
-                    message: msgData.msgData,
+                    message: msgData.msg,
+                    isDm: true,
                 })
             }
         });
