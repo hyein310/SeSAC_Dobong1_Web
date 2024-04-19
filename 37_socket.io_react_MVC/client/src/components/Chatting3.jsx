@@ -83,7 +83,9 @@ export default function Chatting3() {
             // 1. id끼리 비교
             if (key !== socket.id)
             // 2. nickname 끼리 비교 if (nickname !== userList[key])
-            options.push(<option value={key} key={key}>{userList[key]}</option>)
+            // options[]에 새로운 option value 넣고, userList에 담긴 key값을 optinos항목에 표시
+            options.push(<option value={key} key={key}>{userList[key]}</option>);
+
         }
 
         return options;
@@ -100,6 +102,7 @@ export default function Chatting3() {
             dm: dmTo, // all or dm을 받을 클라이언트의 socket.id
             msg: msgInput,
         };
+        // { myNick: 'aa', dm: 'all', msg: 'ㅎㅇ' }
         socket.emit("send", sendData);
         setMsgInput("");
     };
@@ -151,17 +154,19 @@ export default function Chatting3() {
     // scroll
     const scrollDiv = useRef(null);
     useEffect(()=> {
-        scrollDiv.current ?.scrollIntoView({behavior: "smooth"});  // 특정 요소에 따른 스크롤 조정
-        // scrollDiv.current ?.scrollIntoView({behavior: "auto"});
-    }, [chatList])
+        scrollDiv.current?.scrollIntoView({behavior: "smooth"});  // 특정 요소에 따른 스크롤 조정
+        // scrollDiv.current?.scrollIntoView({behavior: "auto"});
+    }, [chatList]);
+
   return (
     <>
       <ul>
         <li>메세지 보내기</li>
         <li>Dm 보내기</li>
       </ul>
-      {/* nickname이 null이면 닉네임 입력창
-          nickname이 있으면 채팅창
+      {/* 
+        nickname이 null이면 닉네임 입력창
+        nickname이 있으면 채팅창
       */}
       {!nickname ? (
         <div className="entry-box">
@@ -187,7 +192,8 @@ export default function Chatting3() {
                 <Speech key={i} chat={chat} />
               )
             )}
-            <div ref={scrollDiv}></div>
+            {/* section 밑에 보이지 않는 공간으로 존재 */}
+            <div ref={scrollDiv}></div> 
           </section>
           <form
             className="msg-form"
