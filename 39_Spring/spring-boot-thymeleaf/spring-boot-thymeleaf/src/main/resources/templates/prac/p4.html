@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <title>Title</title>
+    <script src = "http://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+    <h2>실습</h2>
+    <form action = "/formRes" method = "post">
+        <fieldset>
+            <legend> 폼 전송 - 실습</legend>
+            <label>
+                이름 <input type = "text" name = "name">
+            </label>
+            <br>
+            <label>
+                성별
+                <input type = "radio" name = "gender" value = "male"> 남자
+                <input type = "radio" name = "gender" value = female> 여자
+            </label>
+            <br>
+
+            <div class = "info" id = "info__birth" name = "info_birth">
+                <label>
+                    생년월일
+                    <select name = "yy" id = "year">
+                        <option value = "yy"></option>
+                    </select>년
+                    <select name = "mm" id = "month">
+                        <option value = "mm"></option>
+                    </select>월
+                    <select name = "dd" id = "day">
+                        <option value = "dd"></option>
+                    </select>
+                </label>
+            </div>
+            <br>
+
+            <div>
+                관심사
+                <label>
+                    <input type = "checkbox" name = "hobby" value = "travel"/> 여행
+                    <input type = "checkbox" name = "hobby" value = "fashion"/> 패션
+                    <input type = "checkbox" name = "hobby" value = "food"/> 음식
+                </label>
+            </div>
+            <br>
+        </fieldset>
+        <button type = "submit">회원가입</button>
+    </form>
+
+    <script>
+        $(document).ready(function(){
+        var now = new Date();
+        var year = now.getFullYear();
+        var mon = (now.getMonth() + 1) > 9 ? ''+(now.getMonth() + 1) : '0'+(now.getMonth() + 1);
+        var day = (now.getDate()) > 9 ? ''+(now.getDate()) : '0'+(now.getDate());
+        //년도 selectbox만들기
+        for(var i = 1900 ; i <= year ; i++) {
+            $('#year').append('<option value="' + i + '">' + i + '년</option>');
+        }
+
+        // 월별 selectbox 만들기
+        for(var i=1; i <= 12; i++) {
+            var mm = i > 9 ? i : "0"+i ;
+            $('#month').append('<option value="' + mm + '">' + mm + '월</option>');
+        }
+
+        // 일별 selectbox 만들기
+        for(var i=1; i <= 31; i++) {
+            var dd = i > 9 ? i : "0"+i ;
+            $('#day').append('<option value="' + dd + '">' + dd+ '일</option>');
+        }
+        $("#year  > option[value="+year+"]").attr("selected", "true");
+        $("#month  > option[value="+mon+"]").attr("selected", "true");
+        $("#day  > option[value="+day+"]").attr("selected", "true");
+
+    })
+    </script>
+</body>
+
+
+</html>

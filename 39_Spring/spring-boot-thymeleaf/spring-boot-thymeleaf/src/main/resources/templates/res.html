@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!--th는 서버에서 값을 불러올 때 사용-->
+<html lang = "en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset = "UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>응답 페이지</h1>
+    <ul>
+        <li th:text = " 'name: ' + ${name}"></li>
+        <li th:text = " 'age: ' + ${age}"></li>
+    </ul>
+</body>
+</html>

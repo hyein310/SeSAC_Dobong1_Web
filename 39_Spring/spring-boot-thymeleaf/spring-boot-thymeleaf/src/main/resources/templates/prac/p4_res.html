@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset = "UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>응답</h2>
+    <div th:text = " '이름: ' + ${name}"></div>
+    <div th:text = " '성별: ' + ${gender}"></div>
+    <div th:text = " '생년월일: ' + ${yy} + '-' +${mm} + '-' + ${dd}"></div>
+    <div th:text = " '관심사: ' + ${travel} + '-' +${fashion} + '-' + ${food}"></div>
+</body>
+</html>
