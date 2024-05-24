@@ -3,6 +3,8 @@
 <head>
     <meta charset = "UTF-8">
     <title>api test</title>
+    <!--axios cdn-->
+    <script src = "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <h3>GET 전송</h3>
@@ -24,5 +26,130 @@
         나이: <input type = "number" name = "age"/>
         <button type = "submit">전송</button>
     </form>
+
+    <h3>POST 전송 (DTO 객체)</h3>
+    <form action = "/api/res5" method = "post">
+        이름: <input type = "text" name = "name"/>
+        <br>
+        나이: <input type = "number" name = "age"/>
+        <button type = "submit">전송</button>
+    </form>
+
+    <h3>POST 전송 (VO 객체)</h3>
+    <form action = "/api/res6" method = "post">
+        이름: <input type = "text" name = "name"/>
+        <br>
+        나이: <input type = "number" name = "age"/>
+        <button type = "submit">전송</button>
+    </form>
+
+    <h3>GET 전송 (DTO 객체)</h3>
+    <form action = "/api/res7" method = "get">
+        이름: <input type = "text" name = "name"/>
+        <br>
+        나이: <input type = "number" name = "age"/>
+        <button type = "submit">전송</button>
+    </form>
+
+    <h3>GET 전송 (DTO 객체 string)</h3>
+    <form action = "/api/res8" method = "get">
+        이름: <input type = "text" name = "name"/>
+        <br>
+        나이: <input type = "number" name = "age"/>
+        <button type = "submit">전송</button>
+    </form>
+
+    <h3>GET 전송 (DTO 객체, @RequestBody)</h3>
+    <form action = "/api/res9" method = "get">
+        이름: <input type = "text" name = "name"/>
+        <br>
+        나이: <input type = "number" name = "age"/>
+        <button type = "submit">전송</button>
+    </form>
+
+    <h3>POST 전송 (DTO 객체, @RequestBody)</h3>
+    <form action = "/api/res9" method = "post">
+        이름: <input type = "text" name = "name"/>
+        <br>
+        나이: <input type = "number" name = "age"/>
+        <button type = "submit">전송</button>
+    </form>
+
+    <h3>POST 동적 폼 전송 (DTO 객체, @RequestBody)</h3>
+    <form action = "/api/res10" method = "post" id = "form_res10">
+        이름: <input type = "text" name = "name"/>
+        <br>
+        나이: <input type = "number" name = "age"/>
+        <button type = "button" onclick = "postRes10()">전송</button>
+    </form>
+
+    <h3>POST 동적 폼 전송 (VO 객체, @RequestBody)</h3>
+    <form action = "/api/res11" method = "post" id = "form_res11">
+        이름: <input type = "text" name = "name"/>
+        <br>
+        나이: <input type = "number" name = "age"/>
+        <button type = "button" onclick = "postRes11()">전송</button>
+    </form>
+
+    <h3>GET 동적 폼 전송 ( @RequestParams)</h3>
+    <form action = "/api/res12" method = "get" id = "form_res12">
+        이름: <input type = "text" name = "name"/>
+        <br>
+        나이: <input type = "number" name = "age"/>
+        <button type = "button" onclick = "getRes12()">전송</button>
+    </form>
+
+    <h3>POST 동적 폼 전송 (DTO 객체, @RequestParams)</h3>
+    <form action = "/api/res13" method = "post" id = "form_res13">
+        이름: <input type = "text" name = "name"/>
+        <br>
+        나이: <input type = "number" name = "age"/>
+        <button type = "button" onclick = "postRes13()">전송</button>
+    </form>
+
+    <script>
+        function postRes10() {
+            const form = document.getElementById("form_res10");
+            const data = {
+                name: form.name.value,
+                age: form.age.value
+            }
+            axios.post("/api/res10", data)
+                .then((res) => console.log(res.data))
+        }
+
+        function postRes11() {
+            const form = document.getElementById("form_res11");
+            const data = {
+                name: form.name.value,
+                age: form.age.value
+            }
+            axios.post("/api/res11", data)
+                .then((res) => console.log(res.data))
+        }
+
+        function getRes12() {
+            const form = document.getElementById("form_res12");
+            const data = {
+                name: form.name.value,
+                age: form.age.value
+            }
+            const name = data.name;
+            const age = data.age;
+
+            axios.get("/api/res12", name, data)
+                .then((res) => console.log(res))
+        }
+
+        function postRes13() {
+            const form = document.getElementById("form_res13");
+            const data = {
+                name: form.name.value,
+                age: form.age.value
+            }
+            axios.post("/api/res13", data)
+                .then((res) => console.log(res.data))
+        }
+    </script>
 </body>
 </html>
