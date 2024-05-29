@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang = "en"  xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset = "UTF-8">
+    <title>Title</title>
+    <script src = "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h2>게시판</h2>
+    <br>
+    <label>
+        <input name="search" type="text">
+        <button type="button">검색</button>
+    </label>
+    <br>
+
+        <form id="form_board">
+            <input name="title" type="text" placeholder="제목">
+            <input name="content" type="text" placeholder="내용">
+            <input name="writer" type="text" placeholder="작성자">
+            <button type="button" onclick="insertBoard()">작성</button>
+        </form>
+
+    <br>
+    <br>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>NO.</td>
+                <td>ID</td>
+                <td>제목</td>
+                <td>작성자</td>
+                <td>작성일</td>
+                <td>수정</td>
+                <td>삭제</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="board:${boards}">
+                <td th:text="${board.getNo()}"></td>
+                <td th:text="${board.getId()}"></td>
+                <td th:text="${board.getTitle()}"></td>
+                <td th:text="${board.getWriter()}"></td>
+                <td th:text="${board.getRegistered()}"></td>
+                <td><button type="button" th:onclick="patchBoard([[${board.getId()}]])"> 수정 </button></td>
+                <td><button type="button" th:onclick="deleteBoard([[${board.getId()}]])"> 삭제 </button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function insertBoard() {
+        const form = document.getElementById("form_board");
+        const data ={
+            title : form.title.value,
+            content : form.content.value,
+            writer : form.writer.value,
+        }
+        axios.post("/board", data)
+            .then((res) => {
+                if(res.data.result) {
+                    window.location.reload();
+                }
+                else {
+                    alert("에러발생");
+                }
+            })
+        }
+
+        function patchBoard(id) {
+        const form = document.getElementById("form_board");
+        const data ={
+            title : form.title.value,
+            content : form.content.value,
+            writer : form.writer.value,
+            }
+        axios.patch(`/board/${id}`, data)
+            .then((res) => {
+                if(res.data.result) {
+                    window.location.reload();
+                }
+                else {
+                    alert("에러발생");
+                }
+            })
+        }
+        function deleteBoard(id) {
+        const form = document.getElementById("form_board");
+        const data ={
+            title : form.title.value,
+            content : form.content.value,
+            writer : form.writer.value,
+            }
+        axios.delete(`/board/${id}`)
+            .then((res) => {
+                if(res.data.result) {
+                    window.location.reload();
+                }
+                else {
+                    alert("에러발생");
+                }
+            })
+        }
+    </script>
+</body>
+</html>
