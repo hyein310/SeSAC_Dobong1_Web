@@ -24,4 +24,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     // @Query("SELECT u FROM UserEntity u WHERE u.name = :name")
     // UserEntity 뒤에는 실제 존재하는 객체가 와야함.
     List<UserEntity> findByNameCustom(String name);
+
+    @Query("SELECT u FROM UserEntity u JOIN FETCH u.todos t WHERE u.id = :userId")
+    UserEntity findTodosByUser(int userId);
 }
