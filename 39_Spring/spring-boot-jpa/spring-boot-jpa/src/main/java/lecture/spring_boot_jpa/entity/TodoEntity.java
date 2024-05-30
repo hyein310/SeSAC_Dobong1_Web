@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.apache.catalina.User;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name = "todo")
@@ -22,9 +23,9 @@ public class TodoEntity {
     @Column(nullable = false, length = 30)
     private String title;
 
-    @Column(nullable = false)
-    @Builder.Default
-    private boolean done = false;
+    @Column(nullable = false) // , columnDefinition = "boolean default false"
+    @ColumnDefault("false")
+    private Boolean done;
 
     // 외래키가 존재하는 엔티티에 column 설정
     @ManyToOne // todo의 입장에서 봤을 때 user와 다대일 관계
